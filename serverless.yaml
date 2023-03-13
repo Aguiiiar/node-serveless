@@ -1,0 +1,31 @@
+app: serverless-node
+service: serverless-node
+frameworkVersion: '3'
+
+provider: 
+  name: aws
+  runtime: nodejs16.x
+
+functions:
+  firstFunction:
+    handler: src/firstFunction.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+  create-user:
+    handler: src/create-user.handler
+    events:
+      - httpApi:
+          path: /users
+          method: post
+  list-users:
+    handler: src/list-users.handler
+    events:
+      - httpApi:
+          path: /users
+          method: get
+        
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
